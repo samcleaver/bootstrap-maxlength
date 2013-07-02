@@ -14,8 +14,7 @@
     $.fn.extend({
         maxlength: function (options, callback) {
 
-            var documentBody = $('body'),
-                defaults = {
+            var defaults = {
                     alwaysShow: false, // if true the indicator it's always shown.
                     threshold: 10, // Represents how many chars left are needed to show up the counter
                     warningClass: "badge badge-success",
@@ -157,7 +156,7 @@
                 return $.extend({}, (typeof el.getBoundingClientRect === 'function') ? el.getBoundingClientRect() : {
                     width: el.offsetWidth,
                     height: el.offsetHeight
-                }, currentInput.offset());
+                }, currentInput.position());
             }
 
           /**
@@ -243,8 +242,7 @@
                         currentInput.data('maxlenghtsizey', currentInput.outerHeight());
                     });
                 }
-
-                documentBody.append(maxLengthIndicator);
+		currentInput.offsetParent().append(maxLengthIndicator);
 
                 currentInput.focus(function() {
                     var remaining = remainingChars(currentInput, getMaxLength(currentInput));
